@@ -24,6 +24,7 @@ CREATE TABLE reviews (
   pricing integer NOT NULL,
   staff integer NOT NULL,
   overall integer NOT NULL,
+  review_text text,
   date timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   user_id integer NOT NULL REFERENCES users(id) ON DELETE CASCADE,
   winery_id integer NOT NULL REFERENCES wineries(id) ON DELETE CASCADE
