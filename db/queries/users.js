@@ -12,7 +12,7 @@ export async function createUser(username, password) {
   const hashedPassword = await bcrypt.hash(password, 10);
   const {
     rows: [user],
-  } = await db.query(sql, [username, hashedPassword]);
+  } = await db.query(sql, [username, hashedPassword, is_admin]);
   return user;
 }
 
@@ -43,4 +43,12 @@ export async function getUserById(id) {
     rows: [user],
   } = await db.query(sql, [id]);
   return user;
+}
+
+export async function deleteUser(id) {
+  const sql = `
+  DELETE FROM users
+  WHERE id = $1
+  `;
+  await db.query(sql, [id]);
 }
