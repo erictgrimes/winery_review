@@ -3,6 +3,10 @@ const app = express();
 export default app;
 
 import usersRouter from "#api/users";
+import reviewsRouter from "#api/reviews";
+import wineriesRouter from "#api/wineries";
+
+
 import getUserFromToken from "#middleware/getUserFromToken";
 import handlePostgresErrors from "#middleware/handlePostgresErrors";
 import cors from "cors";
