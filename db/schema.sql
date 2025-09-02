@@ -1,11 +1,12 @@
+DROP TABLE IF EXISTS reviews;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS wineries;
-DROP TABLE IF EXISTS reviews;
+
 
 CREATE TABLE users (
   id serial PRIMARY KEY,
   username text NOT NULL UNIQUE,
-  password text NOT NULL
+  password text NOT NULL,
   is_admin boolean NOT NULL DEFAULT false
 );
 
@@ -13,8 +14,8 @@ CREATE TABLE wineries (
   id serial PRIMARY KEY,
   name text NOT NULL,
   address text NOT NULL,
-  is_approved boolean NOT NULL DEFAULT false,
-  photo text
+  photo text,
+  is_approved boolean NOT NULL DEFAULT false
 );
 
 CREATE TABLE reviews (

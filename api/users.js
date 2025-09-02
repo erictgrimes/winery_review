@@ -30,24 +30,22 @@ router
 
 router.use(requireUser);
 
-  router
-    .route("/:id")
-    .get(async (req, res) => {
-      const { id } = req.params;
-      const user = await getUserById(id);
-      if (!user) return res.status(404).send("User not found.");
-      res.send(user);
-    })
-    .delete(async (req, res) => {
-      const { id } = req.params;
-      await deleteUser(id);
-      res.sendStatus(204);
-    });
-
 router
-  .route("/:id/reviews")
+  .route("/:id")
   .get(async (req, res) => {
     const { id } = req.params;
-    const reviews = await getReviewsByUserId(id);
-    res.send(reviews);
+    const user = await getUserById(id);
+    if (!user) return res.status(404).send("User not found.");
+    res.send(user);
+  })
+  .delete(async (req, res) => {
+    const { id } = req.params;
+    await deleteUser(id);
+    res.sendStatus(204);
   });
+
+router.route("/:id/reviews").get(async (req, res) => {
+  const { id } = req.params;
+  const reviews = await getReviewsByUserId(id);
+  res.send(reviews);
+});

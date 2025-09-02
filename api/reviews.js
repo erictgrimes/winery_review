@@ -13,7 +13,7 @@ import {
   deleteReview,
   updateReview,
   getReviewsByUserId,
-} from "#db/queries/reviews";
+} from "#db/queries/reviews.js";
 
 router.route("/").get(async (req, res) => {
   const reviews = await getAllReviews();
@@ -29,11 +29,9 @@ router.route("/:id").get(async (req, res) => {
 
 router.use(requireUser);
 
-router
-  .route("/:id/reviews")
-  .post(requireBody([""]), async (req, res) => {
-    const { id } = req.params;
-    const { rating, comment } = req.body;
-    const review = await addReview(id, rating, comment);
-    res.status(201).send(review);
-  });
+router.route("/:id").delete(async (req, res) => {
+  const { id } = req.params;
+  const userId = req.user.id;
+  await deleteReview(id, userId);
+  res.status(204).send();
+});

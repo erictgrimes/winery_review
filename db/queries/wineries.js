@@ -21,13 +21,13 @@ export async function getWineryById(id) {
 
 export async function addWinery(wineryData) {
   const sql = `
-    INSERT INTO wineries (name, location, photo)
+    INSERT INTO wineries (name, address, photo)
     VALUES ($1, $2, $3) RETURNING *`;
   const {
     rows: [winery],
   } = await db.query(sql, [
     wineryData.name,
-    wineryData.location,
+    wineryData.address,
     wineryData.photo,
   ]);
   return winery;
@@ -53,4 +53,3 @@ export async function deleteWinery(id) {
   } = await db.query(sql, [id]);
   return winery;
 }
- 
