@@ -16,7 +16,7 @@ export async function createUser(username, password, is_admin = false) {
   return user;
 }
 
-export async function getUserByUsernameAndPassword(username, password) {
+export async function getUserByUsername(username, password) {
   const sql = `
   SELECT *
   FROM users

@@ -1,11 +1,11 @@
 import express from "express";
 const app = express();
-export default app;
+
+import Login from "./components/login.jsx";
 
 import usersRouter from "#api/users";
 import reviewsRouter from "#api/reviews";
 import wineriesRouter from "#api/wineries";
-
 
 import getUserFromToken from "#middleware/getUserFromToken";
 import handlePostgresErrors from "#middleware/handlePostgresErrors";
@@ -30,3 +30,14 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).send("Sorry! Something went wrong.");
 });
+
+function App() {
+  return (
+    <div>
+      <h1>Welcome to the Winery Review App</h1>
+      <Login />
+    </div>
+  );
+}
+
+export default App;
