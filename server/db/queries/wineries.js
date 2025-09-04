@@ -1,4 +1,4 @@
-import db from "#db/client";
+import db from "#server.db/client";
 import bcrypt from "bcrypt";
 
 export async function getAllWineries() {

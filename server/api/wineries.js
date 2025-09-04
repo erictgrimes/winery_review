@@ -2,8 +2,8 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import requireBody from "#middleware/requireBody";
-import requireUser from "#middleware/requireUser";
+import requireBody from "#server/middleware/requireBody";
+import requireUser from "#server/middleware/requireUser";
 
 import {
   getAllWineries,

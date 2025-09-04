@@ -15,7 +15,7 @@ export default function Navigation({ token, setToken }) {
             <ul>
                 <>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/Wineries">Wineries</Link></li>
+                    <li><Link to="/wineries">Wineries</Link></li>
                 </>
                 {!token && (
                     <>

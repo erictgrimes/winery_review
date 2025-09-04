@@ -3,9 +3,9 @@ const router = express.Router();
 export default router;
 
 import { createUser, getUserByUsername } from "#db/queries/users";
-import requireBody from "#middleware/requireBody";
-import requireUser from "#middleware/requireUser";
-import { createToken } from "#utils/jwt";
+import requireBody from "#server/middleware/requireBody";
+import requireUser from "#server/middleware/requireUser";
+import { createToken } from "#server/utils/jwt";
 
 router
   .route("/register")

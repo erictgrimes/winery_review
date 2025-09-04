@@ -3,12 +3,12 @@ const app = express();
 
 import Login from "./components/login.jsx";
 
-import usersRouter from "#api/users";
-import reviewsRouter from "#api/reviews";
-import wineriesRouter from "#api/wineries";
+import usersRouter from "#server/api/users";
+import reviewsRouter from "#server/api/reviews";
+import wineriesRouter from "#server/api/wineries";
 
-import getUserFromToken from "#middleware/getUserFromToken";
-import handlePostgresErrors from "#middleware/handlePostgresErrors";
+import getUserFromToken from "#server/middleware/getUserFromToken";
+import handlePostgresErrors from "#server/middleware/handlePostgresErrors";
 import cors from "cors";
 import morgan from "morgan";
 
@@ -31,7 +31,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("Sorry! Something went wrong.");
 });
 
-function App() {
+function app() {
   return (
     <div>
       <h1>Welcome to the Winery Review App</h1>
@@ -40,4 +40,4 @@ function App() {
   );
 }
 
-export default App;
+export default app;

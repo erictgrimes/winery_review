@@ -1,4 +1,4 @@
-import { getUserById } from "#db/queries/users";
+import { getUserById } from "#/server/db/queries/users";
 import { verifyToken } from "#server/utils/jwt";
 
 /** Attaches the user to the request if a valid token is provided */
