@@ -1,7 +1,7 @@
-import db from "#db/client";
-import { createUser } from "#db/queries/users";
-import { addWinery } from "#db/queries/wineries";
-import { addReview } from "#db/queries/reviews";
+import db from "#server/db/client";
+import { createUser } from "#server/db/queries/users";
+import { addWinery } from "#server/db/queries/wineries";
+import { addReview } from "#server/db/queries/reviews";
 
 await db.connect();
 await seed();
