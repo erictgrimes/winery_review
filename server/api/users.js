@@ -2,10 +2,10 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { createUser, getUserByUsername } from "#db/queries/users";
-import requireBody from "#server/middleware/requireBody";
-import requireUser from "#server/middleware/requireUser";
-import { createToken } from "#server/utils/jwt";
+import { createUser, getUserByUsername } from "../db/queries/users.js";
+import requireBody from "../middleware/requireBody.js";
+import requireUser from "../middleware/requireUser.js";
+import { createToken } from "../utils/jwt.js";
 
 router
   .route("/register")

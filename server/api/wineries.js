@@ -2,8 +2,8 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import requireBody from "#server/middleware/requireBody";
-import requireUser from "#server/middleware/requireUser";
+import requireBody from "../middleware/requireBody.js";
+import requireUser from "../middleware/requireUser.js";
 
 import {
   getAllWineries,
@@ -11,7 +11,7 @@ import {
   addWinery,
   approveWinery,
   deleteWinery,
-} from "#db/queries/wineries.js";
+} from "../db/queries/wineries.js";
 
 import {
   addReview,
@@ -20,7 +20,7 @@ import {
   getReviewById,
   getReviewByWineryId,
   getReviewsByUserId,
-} from "#db/queries/reviews.js";
+} from "../db/queries/reviews.js";
 
 router.route("/").get(async (req, res) => {
   const wineries = await getAllWineries();
