@@ -17,6 +17,16 @@ export async function getWineryById(id) {
   return winery;
 }
 
+// picking 3 random wineries for the home page
+export async function getRandomWineries() {
+  const sql = `
+    SELECT * FROM wineries
+    ORDER BY RANDOM()
+    LIMIT 3`;
+  const { rows } = await db.query(sql);
+  return rows;
+}
+
 //authorize user here
 
 export async function addWinery(wineryData) {

@@ -9,6 +9,7 @@ import {
   getAllWineries,
   getWineryById,
   addWinery,
+  getRandomWineries,
   approveWinery,
   deleteWinery,
 } from "../db/queries/wineries.js";
@@ -24,6 +25,11 @@ import {
 
 router.route("/").get(async (req, res) => {
   const wineries = await getAllWineries();
+  res.send(wineries);
+});
+
+router.route("/random").get(async (req, res) => {
+  const wineries = await getRandomWineries();
   res.send(wineries);
 });
 
