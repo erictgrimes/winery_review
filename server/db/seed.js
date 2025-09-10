@@ -9,7 +9,7 @@ await db.end();
 console.log("🌱 Database seeded.");
 
 async function seed() {
-  await createUser("foo","user@example.com", "bar");
+  await createUser("foo", "user@example.com", "bar", false);
   await createUser("admin", "admin", "admin@example.com", true);
   await addWinery({
     name: "Test Winery",

@@ -1,18 +1,18 @@
 import db from "#server/db/client";
 import bcrypt from "bcrypt";
 
-export async function createUser(username, password, is_admin = false) {
+export async function createUser(username, email, password, is_admin = false) {
   const sql = `
   INSERT INTO users
-    (username, password, is_admin)
+    (username, email, password, is_admin)
   VALUES
-    ($1, $2, $3)
+    ($1, $2, $3, $4)
   RETURNING *
   `;
   const hashedPassword = await bcrypt.hash(password, 10);
   const {
     rows: [user],
-  } = await db.query(sql, [username, hashedPassword, is_admin]);
+  } = await db.query(sql, [username, email, hashedPassword, is_admin]);
   return user;
 }
 

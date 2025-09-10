@@ -8,7 +8,7 @@ export default function RandomWineryCard({ winery }) {
     useEffect(() => {
         async function fetchWineries() {
             try {
-                const response = await fetch('/api/wineries/random');
+                const response = await fetch('http://localhost:3000/wineries/random');
                 const data = await response.json();
                 setWineries(data);
             } catch (error) {
@@ -24,7 +24,8 @@ export default function RandomWineryCard({ winery }) {
             {wineries.map((winery) => (
                 <div key={winery.id}>
                     <h2>{winery.name}</h2>
-                    <p>{winery.description}</p>
+                    <p>{winery.address}</p>
+                    <img src={winery.photo} alt={winery.name} />
                     <Link to={`/wineries/${winery.id}`}>View Details</Link>
                 </div>
             ))}
