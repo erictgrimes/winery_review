@@ -1,7 +1,6 @@
 import react from "react";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
-import { getRandomWineries } from "@server/api/wineries.js";
 
 
 export default function RandomWineryCard({ winery }) {
@@ -9,7 +8,7 @@ export default function RandomWineryCard({ winery }) {
     useEffect(() => {
         async function fetchWineries() {
             try {
-                const response = await fetch('@server/api/wineries/random');
+                const response = await fetch('/api/wineries/random');
                 const data = await response.json();
                 setWineries(data);
             } catch (error) {

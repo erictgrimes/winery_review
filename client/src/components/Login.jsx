@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import TokenContext from "./TokenContext";
+import "./index.css";
 
 export default function Login() {
   const [username, setUsername] = useState("");
@@ -39,6 +40,8 @@ export default function Login() {
 
   return (
     <form onSubmit={handleSubmit} className="login-form">
+      <h2>Login</h2>
+      <h2><Link to="/register">Register</Link></h2>
       <div>
         <label>
           Username:
