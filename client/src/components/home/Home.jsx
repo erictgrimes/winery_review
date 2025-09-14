@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import Navigation from "./navigation.jsx";
+import Navigation from "./Navigation.jsx";
 import TokenContext from "./TokenContext.jsx";
-import RandomWineryCard from "./randomWineries.jsx";
-import WineryList from "./WineryList.jsx";
+import RandomWineryCard from "./RandomWineries.jsx";
+import WineryList from "../wineries/WineryList.jsx";
 
 //landing page for the app
 export default function Home() {

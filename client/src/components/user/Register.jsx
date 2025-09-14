@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import TokenContext from "./TokenContext";
-import "./index.css";
+import TokenContext from "../home/TokenContext";
+import "../index.css";
 
 export default function Register() {
   const [username, setUsername] = useState("");

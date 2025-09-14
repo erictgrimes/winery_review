@@ -1,10 +1,10 @@
 import React from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import Login from "./components/Login.jsx";
-import Home from "./components/home.jsx";
-import Navigation from "./components/navigation.jsx";
-import Register from "./components/Register.jsx";
-import WineryList from "./components/WineryList.jsx";
+import Login from "./components/user/Login.jsx";
+import Home from "./components/home/Home.jsx";
+import Navigation from "./components/home/Navigation.jsx";
+import Register from "./components/user/Register.jsx";
+import WineryList from "./components/wineries/WineryList.jsx";
 import "./index.css";
 
 function App() {
