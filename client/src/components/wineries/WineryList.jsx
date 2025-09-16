@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import WineryCard from "./WineryCard";
+import "../style/wineryList.css";
 
 export default function WineryList() {
   const [wineries, setWineries] = useState([]);
@@ -21,7 +22,7 @@ export default function WineryList() {
   return (
     <div className="winery-list">
       {wineries.map((winery) => (
-        <WineryCard key={winery.id} winery={winery} />
+        <WineryCard key={winery.id} winery={winery}  />
       ))}
     </div>
   );

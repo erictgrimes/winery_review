@@ -4,6 +4,7 @@ import Navigation from "./Navigation.jsx";
 import TokenContext from "./TokenContext.jsx";
 import RandomWineryCard from "./RandomWineries.jsx";
 import WineryList from "../wineries/WineryList.jsx";
+import "../style/home.css";
 
 //landing page for the app
 export default function Home() {
@@ -11,6 +12,8 @@ export default function Home() {
     <div>
       <h1>Welcome to Winery Review</h1>
       <RandomWineryCard />
+      <div className="divider"></div>
+      <WineryList />
     </div>
   );
 }

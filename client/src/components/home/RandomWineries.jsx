@@ -20,7 +20,7 @@ export default function RandomWineryCard({ winery }) {
     }, []);
 
     return (
-        <div>
+        <div className="random-winery-cards">
             {wineries.map((winery) => (
                 <div key={winery.id}>
                     <h2>{winery.name}</h2>

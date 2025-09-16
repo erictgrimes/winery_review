@@ -1,3 +1,9 @@
+html {
+display: flex;
+flex-direction: column;
+align-items: center;
+}
+
 .navigation {
   background-color: #4d0802;
   display: flex;
@@ -38,3 +44,21 @@
   text-decoration: none;
   color: black;
 }
+.random-winery-cards{
+  background-color: #e3cb8a;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;;
+  margin: 2rem 0;
+  border: black solid 1px;
+  padding: 1rem;
+  width: 90%;
+  
+}
+
+.divider {
+  height: 2px;
+  background-color: #4d0802;
+  margin: 2rem 0;
+}
+

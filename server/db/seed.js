@@ -2,6 +2,7 @@ import db from "#server/db/client";
 import { createUser } from "#server/db/queries/users";
 import { addWinery } from "#server/db/queries/wineries";
 import { addReview } from "#server/db/queries/reviews";
+import { faker } from "@faker-js/faker";
 
 await db.connect();
 await seed();
@@ -11,12 +12,13 @@ console.log("🌱 Database seeded.");
 async function seed() {
   await createUser("foo", "user@example.com", "bar", false);
   await createUser("admin", "admin", "admin@example.com", true);
+  for (let i = 0; i < 10; i++) {
   await addWinery({
-    name: "Test Winery",
-    address: "Napa Valley",
-    description: "A lovely test winery.",
-    image_url: "http://example.com/test-winery.jpg",
+    name: `Test Winery ${i + 1}`,
+    address: faker.location.city(),
+    photo: faker.image.urlPicsumPhotos({ width: 600, height: 400 }),
   });
+}
 
   await addReview({
     winery_id: 1,

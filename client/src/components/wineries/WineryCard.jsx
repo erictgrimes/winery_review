@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "../style/wineryCard.css";
 
 export default function WineryCard({ winery }) {
   return (
