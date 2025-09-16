@@ -1,0 +1,35 @@
+.carousel{
+  position: relative;
+  height: 400px;
+  width: 80%;
+  border-radius: 1 rem;
+  overflow: hidden;
+  
+  background-size: cover;
+  background-position: center;
+  transition: background-image 1s ease-in-out;
+  color : white;
+  
+}
+
+.carousel a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    background-color: #4d0802;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}

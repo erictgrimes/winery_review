@@ -9,7 +9,14 @@ export default function Navigation({ token, setToken }) {
   };
 
   return (
-    <div className ="navigation">
+    <div className="navigation">
+    <div className="logo" style={{width: "300px"}}>
+      <img src="src/assets/wrLogo.png" alt="Winery Review Logo" style={{ width: "100px", height: "100px" }} />
+    </div>
+    <div className="app-title">
+      <h1>Winery Review</h1>
+    </div>
+    <div className ="nav-links" style={{width: "300px"}}>
       <nav>
         <ul>
           <>
@@ -44,6 +51,7 @@ export default function Navigation({ token, setToken }) {
           )}
         </ul>
       </nav>
+    </div>
     </div>
   );
 }

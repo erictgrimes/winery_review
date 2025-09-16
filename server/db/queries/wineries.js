@@ -20,9 +20,20 @@ export async function getWineryById(id) {
 // picking 3 random wineries for the home page
 export async function getRandomWineries() {
   const sql = `
-    SELECT * FROM wineries
+    SELECT 
+      w.id,
+      w.name,
+      w.address,
+      w.photo,
+      ROUND(AVG(r.overall), 1) AS avg_rating,
+      COUNT(r.id) AS review_count
+    FROM wineries w
+    LEFT JOIN reviews r ON r.winery_id = w.id
+    WHERE w.is_approved = true
+    GROUP BY w.id
     ORDER BY RANDOM()
-    LIMIT 3`;
+    LIMIT 3;
+  `;
   const { rows } = await db.query(sql);
   return rows;
 }
