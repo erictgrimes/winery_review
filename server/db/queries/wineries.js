@@ -42,14 +42,15 @@ export async function getRandomWineries() {
 
 export async function addWinery(wineryData) {
   const sql = `
-    INSERT INTO wineries (name, address, photo)
-    VALUES ($1, $2, $3) RETURNING *`;
+    INSERT INTO wineries (name, address, photo, is_approved)
+    VALUES ($1, $2, $3, $4) RETURNING *`;
   const {
     rows: [winery],
   } = await db.query(sql, [
     wineryData.name,
     wineryData.address,
     wineryData.photo,
+    wineryData.is_approved ?? false,
   ]);
   return winery;
 }
@@ -58,7 +59,7 @@ export async function addWinery(wineryData) {
 
 export async function approveWinery(id) {
   const sql = `
-    UPDATE wineries SET is_appoved = TRUE
+    UPDATE wineries SET is_approved = TRUE
     WHERE id = $1 RETURNING *`;
   const {
     rows: [winery],

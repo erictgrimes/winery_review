@@ -11,23 +11,27 @@ console.log("🌱 Database seeded.");
 
 async function seed() {
   await createUser("foo", "user@example.com", "bar", false);
-  await createUser("admin", "admin", "admin@example.com", true);
+  await createUser("admin","admin@example.com", "admin" , true);
   for (let i = 0; i < 10; i++) {
-  await addWinery({
-    name: `Test Winery ${i + 1}`,
-    address: faker.location.city(),
-    photo: faker.image.urlPicsumPhotos({ width: 600, height: 400 }),
-  });
-}
+    await addWinery({
+      name: `Test Winery ${i + 1}`,
+      address: faker.location.city(),
+      photo: faker.image.urlPicsumPhotos({ width: 600, height: 400 }),
+      is_approved: true,
+    });
+  }
 
-  await addReview({
-    winery_id: 1,
-    user_id: 1,
-    venue: 5,
-    variety: 5,
-    pricing: 5,
-    staff: 5,
-    overall: 4,
-    review_text: "Great experience!",
-  });
+  for (let i = 0; i < 10; i++) {
+    await addReview({
+      venue: 5,
+      variety: 5,
+      pricing: 5,
+      staff: 5,
+      overall: 4,
+      review_text: "Great experience!",
+      date: new Date(),
+      user_id: 1,
+      winery_id: i + 1,
+    });
+  }
 }
