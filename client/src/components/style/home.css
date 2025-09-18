@@ -1,0 +1,14 @@
+.hero-image {
+  display: flex;
+  justify-content: center;;
+  border-radius: 8px;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+
+

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import "../index.css";
+import "../style/navigation.css";
+import { useState } from "react";
 
 // check for token
 
@@ -7,6 +8,7 @@ export default function Navigation({ token, setToken }) {
   const handleLogout = () => {
     setToken(null);
   };
+
 
   return (
     <div className="navigation">
