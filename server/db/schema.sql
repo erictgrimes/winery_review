@@ -15,6 +15,8 @@ CREATE TABLE wineries (
   id serial PRIMARY KEY,
   name text NOT NULL,
   address text NOT NULL,
+  city text NOT NULL,
+  state text NOT NULL,
   photo text,
   is_approved boolean NOT NULL DEFAULT false
 );

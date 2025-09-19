@@ -5,6 +5,7 @@ import Home from "./components/home/Home.jsx";
 import Navigation from "./components/home/Navigation.jsx";
 import Register from "./components/user/Register.jsx";
 import WineryList from "./components/wineries/WineryList.jsx";
+import WineryDetails from "./components/wineries/WineryDetails.jsx";
 import "./index.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/wineries" element={<WineryList />} />
+        <Route path="/wineries/:id" element={<WineryDetails />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

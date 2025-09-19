@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import WineryCard from "./WineryCard";
 import "../style/wineryList.css";
 
@@ -23,8 +24,10 @@ export default function WineryList() {
   }, []);
 
   useEffect(() => {
-    const filtered = wineries.filter((winery) =>
-      winery.name.toLowerCase().includes(searchTerm.toLowerCase())
+    const filtered = wineries.filter(
+      (winery) =>
+        winery.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        winery.city.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredWineries(filtered);
   }, [searchTerm, wineries]);
@@ -38,7 +41,7 @@ export default function WineryList() {
       <div className="search-bar">
         <input
           type="text"
-          placeholder="Search wineries..."
+          placeholder="Filter Wineries..."
           value={searchTerm}
           onChange={handleSearchChange}
         />
@@ -46,10 +49,11 @@ export default function WineryList() {
       {filteredWineries.length === 0 && (
         <p>No wineries found matching "{searchTerm}"</p>
       )}
-      {filteredWineries.map((winery) => (
-        <WineryCard key={winery.id} winery={winery}  />
-      ))}
+      <div className="winery-grid">
+        {filteredWineries.map((winery) => (
+          <WineryCard key={winery.id} winery={winery} />
+        ))}
+      </div>
     </div>
   );
 }
-

@@ -9,19 +9,19 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(null);
   const { setToken } = useContext(TokenContext);
-  const navigtate = useNavigate();
+  const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
     setError(null);
     
     try {
-      const response = await fetch("/server/api/user/register", {
+      const response = await fetch("http://localhost:3000/users/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password, email }),
+        body: JSON.stringify({ username, email, password }),
       });
       if (!response.ok) {
         const errorData = await response.json();
@@ -31,13 +31,15 @@ export default function Register() {
       const { token } = await response.json();
       setToken(token);
       localStorage.setItem("authToken", token);
-      navigtate("/home");
+      navigate("/account");
     } catch (error) {
       setError("An unexpected error occurred");
     }
   }
-
+console.log(username, email, password)
   return (
+    
+  
     <form onSubmit={handleSubmit} className="register-form">
         <h2><Link to="/login">Login</Link></h2>
         <h2>Register</h2>

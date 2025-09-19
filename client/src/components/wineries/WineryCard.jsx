@@ -3,9 +3,10 @@ import "../style/wineryCard.css";
 import { Star, StarHalf } from "lucide-react";
 
 function StarRating({ rating }) {
-  if (!rating) return null;
+  if (rating === null || rating === undefined) return null;
+  const numericRating = Number(rating);
 
-  const fullStars = Math.floor(rating);
+  const fullStars = Math.floor(numericRating);
   const hasHalfStar = rating % 1 >= 0.5;
   const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
@@ -28,16 +29,14 @@ export default function WineryCard({ winery }) {
       <h2>{winery.name}</h2>
       <img src={winery.photo} alt={winery.name} />
 
-      {winery?.avg_rating ? (
+      {winery?.avg_overall ? (
         <div className="review-stats">
-          <StarRating rating={winery.avg_rating} />
-          <span>{winery.avg_rating} / 5</span>
-          <span>({winery.review_count} reviews)</span>
+          <StarRating rating={winery.avg_overall} />
         </div>
       ) : (
         <p>No reviews yet</p>
       )}
-      <p>{winery.address}</p>
+      <p>{winery.city}</p>
       <Link to={`/wineries/${winery.id}`}>View Details</Link>
     </div>
   );

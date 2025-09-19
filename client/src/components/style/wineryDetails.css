@@ -1,0 +1,33 @@
+
+.details-card {
+    display:flex;
+    justify-content: space-around;
+    background-color: rgba(247, 247, 247, 0.274);
+    padding: 1rem;
+}
+
+.details-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star-ratings {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.overall {
+    grid-column: span 2;
+}
+
+
+.details h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    
+}

@@ -15,12 +15,12 @@ export default function Login() {
     setError(null);
 
     try {
-      const response = await fetch("/server/api/user/login", {
+      const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ username: username.trim(), password }),
       });
 
       if (!response.ok) {
@@ -32,7 +32,7 @@ export default function Login() {
       const { token } = await response.json();
       setToken(token);
       localStorage.setItem("authToken", token);
-      navigate("/Home");
+      navigate("/account");
     } catch (error) {
       setError("An unexpected error occurred");
     }
@@ -41,7 +41,9 @@ export default function Login() {
   return (
     <form onSubmit={handleSubmit} className="login-form">
       <h2>Login</h2>
-      <h2><Link to="/register">Register</Link></h2>
+      <h2>
+        <Link to="/register">Register</Link>
+      </h2>
       <div>
         <label>
           Username:

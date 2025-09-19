@@ -1,34 +1,85 @@
-import {useParams} from "react-router-dom";
-import { useState, useEffect, use } from "react";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Star, StarHalf } from "lucide-react";
+import "../style/wineryDetails.css";
 
-export default function wineryDetails() {
-    const { id } = useParams();
-    const [winery, setWinery] = useState(null);
+function StarRating({ rating }) {
+  if (rating === null || rating === undefined) return null;
+  const numericRating = Number(rating);
+  const fullStars = Math.floor(numericRating);
+  const hasHalfStar = rating % 1 >= 0.5;
+  const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
-    useEffect(() => {
-        async function fetchWinery() {
-            try {
-                const response = await fetch(`/api/wineries/${id}`);
-                const data = await response.json();
-                setWinery(data);
-            } catch(err) {
-                console.log('Error fetching winery details:', err);
-            }
-        }
-        fetchWinery();
-    }, [id]);
+  return (
+    <div className="stars flex">
+      {Array.from({ length: fullStars }, (_, i) => (
+        <Star key={`full-${i}`} size={20} fill="gold" stroke="gold" />
+      ))}
+      {hasHalfStar && <StarHalf size={20} fill="gold" stroke="gold" />}
+      {Array.from({ length: emptyStars }, (_, i) => (
+        <Star key={`empty-${i}`} size={20} fill="none" stroke="gold" />
+      ))}
+    </div>
+  );
+}
 
-    if (!winery) {
-        return <div>Loading...</div>;
+export default function WineryDetails() {
+  const { id } = useParams();
+  const [winery, setWinery] = useState(null);
+
+  useEffect(() => {
+    async function fetchWinery() {
+      try {
+        const response = await fetch(`http://localhost:3000/wineries/${id}`);
+        const data = await response.json();
+        console.log("Winery data:", data);
+        setWinery(data);
+      } catch (err) {
+        console.log("Error fetching winery details:", err);
+      }
     }
+    fetchWinery();
+  }, [id]);
 
-    return (
-        <div>
-            <img src={winery.photo} alt={winery.name} />
-            <h2>{winery.name}</h2>
-            <p>{winery.address}</p>
-            
-            <p>{winery.description}</p>
+  if (!winery) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div className="details">
+      <h2>{winery[0].name}</h2>
+      <div className="details-card">
+        <div className="details-image">
+          <img src={winery[0].photo} alt={winery[0].name} />
         </div>
-    );
+        <div className="star-ratings">
+          <span>
+            Veune
+            <StarRating rating={winery[0].avg_venue} />
+          </span>
+          <span>
+            Variety
+            <StarRating rating={winery[0].avg_variety} />
+          </span>
+          <span>
+            Pricing
+            <StarRating rating={winery[0].avg_pricing} />
+          </span>
+          <span>
+            Staff
+            <StarRating rating={winery[0].avg_staff} />
+          </span>
+          <span className="overall">
+            Overall
+            <StarRating rating={winery[0].avg_overall} />
+          </span>
+        </div>
+
+        <p>{winery[0].address}</p>
+        <p>
+          {winery[0].city}, {winery[0].state}
+        </p>
+      </div>
+    </div>
+  );
 }

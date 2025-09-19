@@ -14,7 +14,7 @@ router
     const user = await createUser(username, email, password);
 
     const token = await createToken({ id: user.id });
-    res.status(201).send(token);
+    res.status(201).json({token});
   });
 
 router
@@ -25,7 +25,7 @@ router
     if (!user) return res.status(401).send("Invalid username or password.");
 
     const token = await createToken({ id: user.id });
-    res.send(token);
+    res.status(200).json({token});
   });
 
 router.use(requireUser);

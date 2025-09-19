@@ -15,7 +15,9 @@ async function seed() {
   for (let i = 0; i < 10; i++) {
     await addWinery({
       name: `Test Winery ${i + 1}`,
-      address: faker.location.city(),
+      address: faker.location.streetAddress(),
+      city: faker.location.city(),
+      state: faker.location.state(),
       photo: faker.image.urlPicsumPhotos({ width: 600, height: 400 }),
       is_approved: true,
     });

@@ -12,7 +12,11 @@
 
 .navigation h1 {
   max-width: 500px;
+  font-weight:200;
   font-size: 55px;
+  transition: font-size 0.5s ease-in-out;
+  font-family: "Mea Culpa", cursive;
+  
 } 
 .navigation ul {
   list-style: none;
@@ -25,4 +29,11 @@
   color: white;
   text-decoration: none;
   font-weight: bold;
+}
+
+@media (max-width: 1150px) {
+    .navigation h1 {
+      font-size: 40px;
+      transition: font-size 0.5s ease-in-out;
+    }
 }

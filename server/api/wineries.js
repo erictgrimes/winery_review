@@ -47,7 +47,7 @@ router.use(requireUser);
 
 router
   .route("/")
-  .post(requireBody("name", "address", "photo"), async (req, res) => {
+  .post(requireBody("name", "address", "city", "state", "photo"), async (req, res) => {
     const { name, address, photo } = req.body;
     const winery = await addWinery({ name, address, photo });
     res.status(201).send(winery);

@@ -12,8 +12,9 @@ export default function Home() {
       <div className="hero-image">
       <RandomWineryCard />
       </div>
-      <div className="divider"></div>
+      <div className="home-page-list">
       <WineryList />
+      </div>
     </div>
   );
 }

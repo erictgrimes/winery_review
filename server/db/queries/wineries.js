@@ -3,17 +3,35 @@ import bcrypt from "bcrypt";
 
 export async function getAllWineries() {
   const sql = `
-    SELECT * FROM wineries `;
+  SELECT w.*, 
+  COALESCE(AVG(r.venue), 0) as avg_venue,
+  COALESCE(AVG(r.variety), 0) as avg_variety,
+  COALESCE(AVG(r.pricing), 0) as avg_pricing,
+  COALESCE(AVG(r.staff), 0) as avg_staff,
+  COALESCE(AVG(r.overall), 0) as avg_overall,
+  COUNT(r.id) as review_count
+  FROM wineries w
+  LEFT JOIN reviews r ON w.id = r.winery_id
+  GROUP BY w.id
+  ORDER BY w.name;`
   const { rows } = await db.query(sql);
   return rows;
 }
 
 export async function getWineryById(id) {
   const sql = `
-    SELECT * FROM wineries WHERE id = $1`;
-  const {
-    rows: [winery],
-  } = await db.query(sql, [id]);
+  SELECT w.*, 
+  COALESCE(AVG(r.venue), 0) as avg_venue,
+  COALESCE(AVG(r.variety), 0) as avg_variety,
+  COALESCE(AVG(r.pricing), 0) as avg_pricing,
+  COALESCE(AVG(r.staff), 0) as avg_staff,
+  COALESCE(AVG(r.overall), 0) as avg_overall,
+  COUNT(r.id) as review_count
+  FROM wineries w
+  LEFT JOIN reviews r ON w.id = r.winery_id
+  WHERE w.id = $1
+  GROUP BY w.id;`;
+  const { rows: winery } = await db.query(sql, [id]);
   return winery;
 }
 
@@ -23,7 +41,7 @@ export async function getRandomWineries() {
     SELECT 
       w.id,
       w.name,
-      w.address,
+      w.city,
       w.photo,
       ROUND(AVG(r.overall), 1) AS avg_rating,
       COUNT(r.id) AS review_count
@@ -42,13 +60,15 @@ export async function getRandomWineries() {
 
 export async function addWinery(wineryData) {
   const sql = `
-    INSERT INTO wineries (name, address, photo, is_approved)
-    VALUES ($1, $2, $3, $4) RETURNING *`;
+    INSERT INTO wineries (name, address, city, state, photo, is_approved)
+    VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`;
   const {
     rows: [winery],
   } = await db.query(sql, [
     wineryData.name,
     wineryData.address,
+    wineryData.city,
+    wineryData.state,
     wineryData.photo,
     wineryData.is_approved ?? false,
   ]);
