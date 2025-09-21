@@ -14,6 +14,11 @@ export default function Login() {
     e.preventDefault();
     setError(null);
 
+    if(!username.trim() || !password){
+      setError("please enter both username and password");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3000/users/login", {
         method: "POST",
@@ -31,7 +36,7 @@ export default function Login() {
 
       const { token } = await response.json();
       setToken(token);
-      localStorage.setItem("authToken", token);
+      localStorage.setItem("token", token);
       navigate("/account");
     } catch (error) {
       setError("An unexpected error occurred");
@@ -39,11 +44,9 @@ export default function Login() {
   }
 
   return (
+    
     <form onSubmit={handleSubmit} className="login-form">
       <h2>Login</h2>
-      <h2>
-        <Link to="/register">Register</Link>
-      </h2>
       <div>
         <label>
           Username:
@@ -66,6 +69,8 @@ export default function Login() {
       </div>
       {error && <div style={{ color: "red" }}>{error}</div>}
       <button type="submit">Login</button>
+      <Link to="/register">Register</Link>
     </form>
+
   );
 }

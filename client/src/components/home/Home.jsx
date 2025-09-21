@@ -1,6 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import TokenContext from "./TokenContext.jsx";
 import RandomWineryCard from "../wineries/RandomWineries.jsx";
 import WineryList from "../wineries/WineryList.jsx";
 import "../style/home.css";

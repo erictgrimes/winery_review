@@ -17,7 +17,8 @@ const __dirname = path.dirname(__filename);
 const app = express();
 
 // Middleware
-app.use(cors({ origin: process.env.CORS_ORIGIN ?? /localhost/ }));
+app.use(cors({ origin: process.env.CORS_ORIGIN ?? /localhost/,
+   credentials: true }));
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

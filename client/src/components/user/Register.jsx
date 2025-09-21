@@ -30,7 +30,7 @@ export default function Register() {
       }
       const { token } = await response.json();
       setToken(token);
-      localStorage.setItem("authToken", token);
+      localStorage.setItem("token", token);
       navigate("/account");
     } catch (error) {
       setError("An unexpected error occurred");
@@ -41,7 +41,7 @@ console.log(username, email, password)
     
   
     <form onSubmit={handleSubmit} className="register-form">
-        <h2><Link to="/login">Login</Link></h2>
+        
         <h2>Register</h2>
       <div>
         <label>
@@ -75,6 +75,7 @@ console.log(username, email, password)
       </div>
       {error && <p className="error-message">{error}</p>}
       <button type="submit">Register</button>
+      <Link to="/login">Login</Link>
     </form>
   );
 }

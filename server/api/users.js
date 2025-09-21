@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { createUser, getUserByUsername } from "../db/queries/users.js";
+import { createUser, getUserByUsername, getUserById } from "../db/queries/users.js";
 import requireBody from "../middleware/requireBody.js";
 import requireUser from "../middleware/requireUser.js";
 import { createToken } from "../utils/jwt.js";
@@ -29,6 +29,11 @@ router
   });
 
 router.use(requireUser);
+
+router.get("/me", async (req, res) => {
+  const user = await getUserById(req.user.id);
+  res.json(user);
+});
 
 router
   .route("/:id")

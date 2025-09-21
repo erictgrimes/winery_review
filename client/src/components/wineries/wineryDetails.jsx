@@ -1,6 +1,7 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useState, useEffect, useContext } from "react";
 import { Star, StarHalf } from "lucide-react";
+import TokenContext from "../home/TokenContext";
 import "../style/wineryDetails.css";
 
 function StarRating({ rating }) {
@@ -26,6 +27,18 @@ function StarRating({ rating }) {
 export default function WineryDetails() {
   const { id } = useParams();
   const [winery, setWinery] = useState(null);
+  const navigate = useNavigate();
+  const [reviews, setReviews] = useState([]);
+  const { token } = useContext(TokenContext);
+
+  useEffect(() => {
+    async function fetchReviews() {
+      const res = await fetch(`http://localhost:3000/wineries/${id}/reviews`);
+      const data = await res.json();
+      setReviews(data);
+    }
+    fetchReviews();
+  }, [id]);
 
   useEffect(() => {
     async function fetchWinery() {
@@ -54,7 +67,7 @@ export default function WineryDetails() {
         </div>
         <div className="star-ratings">
           <span>
-            Veune
+            Venue
             <StarRating rating={winery[0].avg_venue} />
           </span>
           <span>
@@ -79,6 +92,12 @@ export default function WineryDetails() {
         <p>
           {winery[0].city}, {winery[0].state}
         </p>
+        {token && (<button
+          onClick={() => navigate(`/wineries/${winery[0].id}/addreview`)}
+          disabled={!token}
+        >
+          Add Review
+        </button>)}
       </div>
     </div>
   );

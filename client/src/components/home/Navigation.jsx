@@ -1,12 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/navigation.css";
-import { useState } from "react";
+import { useContext } from "react";
+import TokenContext from "../home/TokenContext";
+
 
 // check for token
 
-export default function Navigation({ token, setToken }) {
+
+export default function Navigation() {
+
+  const { token, setToken } = useContext(TokenContext);
+  const navigate = useNavigate();
+
   const handleLogout = () => {
     setToken(null);
+    localStorage.removeItem("token");
+    navigate("/login");
+
   };
 
 
@@ -42,12 +52,12 @@ export default function Navigation({ token, setToken }) {
           {token && (
             <>
               <li>
-                <Link to="/profile">Profile</Link>
+                <Link to="/account">Profile</Link>
               </li>
               <li>
                 <button onClick={handleLogout} className="logout-button">
-                  Logout
-                </button>
+                    Logout
+                  </button>
               </li>
             </>
           )}

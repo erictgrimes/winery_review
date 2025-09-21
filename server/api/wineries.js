@@ -47,33 +47,47 @@ router.use(requireUser);
 
 router
   .route("/")
-  .post(requireBody("name", "address", "city", "state", "photo"), async (req, res) => {
-    const { name, address, photo } = req.body;
-    const winery = await addWinery({ name, address, photo });
-    res.status(201).send(winery);
-  });
-
-router
-  .route("/:id/reviews")
   .post(
-    requireBody("venue", "variety", "pricing", "staff", "review_text"),
+    requireBody("name", "address", "city", "state", "photo"),
     async (req, res) => {
-      const userId = req.user.id;
-      const wineryId = req.params.id;
-      const { venue, variety, pricing, staff, overall, review_text } = req.body;
-      const review = await addReview({
-        winery_id: wineryId,
-        user_id: userId,
-        venue,
-        variety,
-        pricing,
-        staff,
-        overall,
-        review_text,
-      });
-      res.status(201).send(review);
+      const { name, address, photo } = req.body;
+      const winery = await addWinery({ name, address, photo });
+      res.status(201).send(winery);
     }
   );
+
+router
+  .route("/:id/addreview")
+  .post(
+    requireBody(["venue", "variety", "pricing", "staff", "overall", "review_text"]),
+    async (req, res) => {
+      try {
+        if (!req.user) return res.status(401).send("Unauthorized");
+
+        const userId = req.user.id;
+        const wineryId = Number(req.params.id);
+        const { venue, variety, pricing, staff, overall, review_text } = req.body;
+
+        const review = await addReview({
+          winery_id: Number(wineryId),
+          user_id: Number(userId),
+          venue: Number(venue),
+          variety: Number(variety),
+          pricing: Number(pricing),
+          staff: Number(staff),
+          overall: Number(overall),
+          review_text,
+        });
+
+        res.status(201).send({review});
+      } catch (err) {
+        console.error("Error adding review:", err);
+        if (err.stack) console.error(err.stack); 
+        res.status(500).send("Failed to add review");
+      }
+    }
+  );
+
 
 router.route("").delete(async (req, res) => {
   await deleteReview(req.params.id, req.body.userId);
