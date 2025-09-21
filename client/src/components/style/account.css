@@ -1,0 +1,60 @@
+
+.account {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.userCard {
+  background: rgba(216, 178, 80, 0.903);
+  padding: 2rem 3rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 70%;
+  text-align: center;
+}
+
+.userCard h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.userCard p {
+  font-size: 1rem;
+  margin: 0.5rem 0;
+  color: #555;
+}
+
+.userCard button {
+  margin: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.userCard button:first-of-type {
+  background-color: #068208;
+  color: white;
+}
+
+.userCard button:first-of-type:hover {
+  background-color: #377610;
+}
+
+.userCard button:last-of-type {
+  background-color: #942d21;
+  color: white;
+}
+
+.userCard button:last-of-type:hover {
+  background-color: #751e15;
+}
+
+.account .reviews {
+    width: 350px;
+}

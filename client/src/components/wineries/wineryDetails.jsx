@@ -111,17 +111,20 @@ export default function WineryDetails() {
             <StarRating rating={winery[0].avg_overall} />
           </span>
         </div>
-
+    <div className = "winery-address">
         <p>{winery[0].address}</p>
         <p>
           {winery[0].city}, {winery[0].state}
         </p>
+        </div>
+        <div className="add-review">
         {token && (<button
           onClick={() => navigate(`/wineries/${winery[0].id}/addreview`)}
           disabled={!token}
         >
           Add Review
         </button>)}
+        </div>
       </div>
 
       <ReviewList mode="winery" user={user}/>

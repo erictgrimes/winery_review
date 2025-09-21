@@ -5,14 +5,19 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   max-width: 400px;
   margin: 2rem auto;
-  display: grid;
-  grid-template-columns: auto;
 }
 
 .username, .wineryname {
     font-size: 36px;
     font-weight: bold;
-    display: flex;
-    justify-content:start;
-    align-items: left;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+}
+
+#stars {
+   display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    text-align: center;
 }

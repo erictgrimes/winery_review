@@ -2,6 +2,7 @@ import { useEffect,useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TokenContext from "../home/TokenContext";
 import ReviewList from "../reviews/ReviewList";
+import "../style/account.css"
 
 export default function Account() {
   const {token, setToken } = useContext(TokenContext);

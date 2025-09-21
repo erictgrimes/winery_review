@@ -59,7 +59,7 @@ export default function ReviewCard({ review, user, onDelete }) {
       <div >
         <span className="wineryname">{winery_name}</span></div>
 
-      <div >
+      <div id = "stars" >
         <div >
           <span>Overall:</span> <StarRating rating={overall} />
         </div>
