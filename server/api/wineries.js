@@ -18,9 +18,7 @@ import {
   addReview,
   deleteReview,
   updateReview,
-  getReviewById,
-  getReviewByWineryId,
-  getReviewsByUserId,
+  getReviewsByWineryId,
 } from "../db/queries/reviews.js";
 
 router.route("/").get(async (req, res) => {
@@ -39,7 +37,7 @@ router.route("/:id").get(async (req, res) => {
 });
 
 router.route("/:id/reviews").get(async (req, res) => {
-  const reviews = await getReviewByWineryId(req.params.id);
+  const reviews = await getReviewsByWineryId(req.params.id);
   res.send(reviews);
 });
 
@@ -87,9 +85,3 @@ router
       }
     }
   );
-
-
-router.route("").delete(async (req, res) => {
-  await deleteReview(req.params.id, req.body.userId);
-  res.status(204).send();
-});

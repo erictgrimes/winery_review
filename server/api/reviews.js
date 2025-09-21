@@ -8,7 +8,7 @@ import requireUser from "../middleware/requireUser.js";
 import {
   getAllReviews,
   getReviewById,
-  getReviewByWineryId,
+  getReviewsByWineryId,
   addReview,
   deleteReview,
   updateReview,
@@ -32,6 +32,13 @@ router.use(requireUser);
 router.route("/:id").delete(async (req, res) => {
   const { id } = req.params;
   const userId = req.user.id;
-  await deleteReview(id, userId);
-  res.status(204).send();
+
+  try {
+    const deletedReview = await deleteReview(id, userId);
+    if (!deletedReview) return res.status(403).send("You cannot delete this review.");
+    res.status(204).send();
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error deleting review.");
+  }
 });

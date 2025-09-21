@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { Star, StarHalf } from "lucide-react";
 import TokenContext from "../home/TokenContext";
 import "../style/wineryDetails.css";
+import ReviewList from "../reviews/ReviewList";
 
 function StarRating({ rating }) {
   if (rating === null || rating === undefined) return null;
@@ -30,6 +31,7 @@ export default function WineryDetails() {
   const navigate = useNavigate();
   const [reviews, setReviews] = useState([]);
   const { token } = useContext(TokenContext);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     async function fetchReviews() {
@@ -54,9 +56,31 @@ export default function WineryDetails() {
     fetchWinery();
   }, [id]);
 
+  useEffect(() => {
+    async function fetchUser() {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      try {
+        const res = await fetch("http://localhost:3000/users/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        setUser(data); // now we have user.id
+      } catch (err) {
+        console.error("Error fetching user:", err);
+      }
+    }
+    fetchUser();
+  }, [token]);
+
+
   if (!winery) {
     return <div>Loading...</div>;
   }
+
+
 
   return (
     <div className="details">
@@ -99,6 +123,8 @@ export default function WineryDetails() {
           Add Review
         </button>)}
       </div>
+
+      <ReviewList mode="winery" user={user}/>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import TokenContext from "../home/TokenContext";
+import "../style/addReview.css"
 
 export default function AddReview() {
   const { id: wineryId } = useParams();
@@ -49,6 +50,7 @@ export default function AddReview() {
   console.log(review)
 
   return (
+    <div className = "addReview">
     <form onSubmit={handleSubmit}>
       <h2>Add Review</h2>
       {["venue", "variety", "pricing", "staff", "overall"].map((field) => (
@@ -78,5 +80,6 @@ export default function AddReview() {
       </label>
       <button type="submit">Submit Review</button>
     </form>
+    </div>
   );
 }

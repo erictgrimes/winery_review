@@ -16,12 +16,6 @@ export async function getReviewById(id) {
   } = await db.query(sql, [id]);
   return review;
 }
-export async function getReviewByWineryId(winery_id) {
-  const sql = `
-    SELECT * FROM reviews WHERE winery_id = $1`;
-  const { rows } = await db.query(sql, [winery_id]);
-  return rows;
-}
 
 //authorized user here
 
@@ -68,9 +62,24 @@ export async function updateReview(id, reviewData) {
 }
 
 export async function getReviewsByUserId(user_id) {
-    const sql = `
-    SELECT * FROM reviews WHERE user_id = $1`;
-    const { rows } = await db.query(sql, [user_id]);
+  const sql = `
+    SELECT r.*, w.name AS winery_name, w.photo AS winery_photo
+    FROM reviews r
+    JOIN wineries w ON r.winery_id = w.id
+    WHERE r.user_id = $1
+    ORDER BY r.date DESC
+  `;
+  const { rows } = await db.query(sql, [user_id]);
+  return rows;
+}
+export async function getReviewsByWineryId(winery_id) {
+    const sql = `SELECT r.*, u.username
+    FROM reviews r
+    JOIN users u ON r.user_id = u.id
+    WHERE r.winery_id = $1
+    ORDER BY r.date DESC
+    `;
+    const { rows } = await db.query(sql, [winery_id]);
     return rows;
 }
 

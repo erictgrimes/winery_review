@@ -2,7 +2,8 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { createUser, getUserByUsername, getUserById } from "../db/queries/users.js";
+import { createUser, getUserByUsername, getUserById, deleteUser } from "../db/queries/users.js";
+import { getReviewsByUserId } from "../db/queries/reviews.js";
 import requireBody from "../middleware/requireBody.js";
 import requireUser from "../middleware/requireUser.js";
 import { createToken } from "../utils/jwt.js";
@@ -30,27 +31,18 @@ router
 
 router.use(requireUser);
 
-router.get("/me", async (req, res) => {
-  const user = await getUserById(req.user.id);
-  res.json(user);
-});
-
-router
-  .route("/:id")
+router.route("/me")
   .get(async (req, res) => {
-    const { id } = req.params;
-    const user = await getUserById(id);
-    if (!user) return res.status(404).send("User not found.");
-    res.send(user);
+    const user = await getUserById(req.user.id);
+    res.json(user);
   })
   .delete(async (req, res) => {
-    const { id } = req.params;
-    await deleteUser(id);
+    await deleteUser(req.user.id);
     res.sendStatus(204);
   });
 
+
 router.route("/:id/reviews").get(async (req, res) => {
-  const { id } = req.params;
-  const reviews = await getReviewsByUserId(id);
+  const reviews = await getReviewsByUserId(req.user.id);
   res.send(reviews);
 });
