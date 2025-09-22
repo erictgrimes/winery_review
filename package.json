@@ -10,7 +10,11 @@
     "test": "vitest",
     "db:schema": "psql -d winery_review -f server/db/schema.sql",
     "db:seed": "node --env-file=.env server/db/seed.js",
-    "db:reset": "npm run db:schema && npm run db:seed"
+    "db:reset": "npm run db:schema && npm run db:seed",
+
+    "db:schema:deploy": "psql -d postgresql://winery_review_user:JzbzSDOOrGOl4pqQyPu1zmlBEqn4yUNs@dpg-d38kouripnbc7389cdqg-a.oregon-postgres.render.com/winery_review -f server/db/schema.sql",
+    "db:seed:deploy": "node --env-file=.env server/db/seed.js",
+    "db:reset:deploy": "npm run db:schema:deploy && npm run db:seed:deploy"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
