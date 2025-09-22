@@ -1,9 +1,6 @@
 import pg from "pg";
 
-const options = { connectionString: process.env.DATABASE_URL,
-    ssl: {
-        rejectUnauthorized:false,
-    },
+const options = { connectionString: process.env.DATABASE_URL
  };
 
 
