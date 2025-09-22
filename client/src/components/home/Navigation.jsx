@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "../style/navigation.css";
 import {  useContext } from "react";
 import TokenContext from "../home/TokenContext";
+import wrLogo from "../../assets/wrLogo.png";
 
 
 // check for token
@@ -23,7 +24,7 @@ export default function Navigation() {
   return (
     <div className="navigation">
     <div className="logo" style={{width: "300px"}}>
-      <img src="~/client/src/assets/wrLogo.png" alt="Winery Review Logo" style={{ width: "100px", height: "100px" }} />
+      <img src={wrLogo} alt="Winery Review Logo" style={{ width: "100px", height: "100px" }} />
     </div>
     <div className="app-title">
       <h1>Winery Review</h1>
