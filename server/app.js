@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === "production") {
   app.use("/assets", express.static(path.join(__dirname, "../client/dist/assets")));
 
   // Serve index.html for all other routes (React handles routing)
-  app.get("/*", (req, res) =>
+  app.get("/(.*)", (req, res) =>
     res.sendFile(path.join(__dirname, "../client/dist/index.html"))
   );
 } else {
