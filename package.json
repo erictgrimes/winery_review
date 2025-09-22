@@ -1,11 +1,11 @@
 {
-  "name": "foobar",
+  "name": "winery_review",
   "type": "module",
   "imports": {
     "#*": "./*.js"
   },
   "scripts": {
-    "start": "node --env-file=.env server/server.js",
+    "start": "cd client && npm install && npm run build && cd .. && node --env-file=.env server/server.js",
     "dev": "node --watch --env-file=.env server/server.js",
     "test": "vitest",
     "db:schema": "psql -d winery_review -f server/db/schema.sql",
