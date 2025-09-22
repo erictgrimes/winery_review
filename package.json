@@ -8,7 +8,7 @@
     "start": "node --env-file=.env server/server.js",
     "dev": "node --watch --env-file=.env server/server.js",
     "test": "vitest",
-    "db:schema": "psql -d winery_]review -f server/db/schema.sql",
+    "db:schema": "psql -d winery_review -f server/db/schema.sql",
     "db:seed": "node --env-file=.env server/db/seed.js",
     "db:reset": "npm run db:schema && npm run db:seed"
   },

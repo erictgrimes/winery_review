@@ -1,8 +1,13 @@
-import pg from "pg";
+import pkg from "pg";
+const { Pool } = pkg;
 
-const options = { connectionString: process.env.DATABASE_URL
- };
+const isProduction = process.env.DATABASE_URL && process.env.NODE_ENV === "production";
 
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: isProduction
+    ? { rejectUnauthorized: false } 
+    : false 
+});
 
-const db = new pg.Client(options);
-export default db;
+export default pool;
