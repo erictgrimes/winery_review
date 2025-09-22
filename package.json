@@ -8,9 +8,9 @@
     "start": "node --env-file=.env server/server.js",
     "dev": "node --watch --env-file=.env server/server.js",
     "test": "vitest",
-    "db:schema": "psql -d winery-review -f server/db/schema.sql",
-    "db:seed": "node --env-file=.env server/db/seed.js",
-    "db:reset": "npm run db:schema && npm run db:seed"
+    "db:schema": "psql $DATABASE_URL -f server/db/schema.sql",
+  "db:seed": "psql $DATABASE_URL -f server/db/seed.sql",
+  "db:reset": "npm run db:schema && npm run db:seed"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",
