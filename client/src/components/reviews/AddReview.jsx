@@ -27,7 +27,7 @@ export default function AddReview() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-    const res = await fetch(`http://localhost:3000/wineries/${wineryId}/addreview`, {
+    const res = await fetch(`/wineries/${wineryId}/addreview`, {
       method: "POST",
       headers: { "Content-Type": "application/json",
           Authorization: `Bearer ${token}` },

@@ -41,7 +41,7 @@ export default function ReviewCard({ review, user, onDelete }) {
     if (!window.confirm("Are you sure you want to delete this review?")) return;
 
     try {
-      await fetch(`http://localhost:3000/reviews/${id}`, {
+      await fetch(`/reviews/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });

@@ -15,10 +15,10 @@ export default function ReviewList({ mode, user }) {
         let headers = {};
 
         if (mode === "winery") {
-          url = `http://localhost:3000/wineries/${id}/reviews`;
+          url = `/wineries/${id}/reviews`;
 
         } else if (mode === "user" && user?.id) {
-          url = `http://localhost:3000/users/${user.id}/reviews`;
+          url = `/users/${user.id}/reviews`;
           headers = { Authorization: `Bearer ${localStorage.getItem("token")}` };
         }
         if (!url) return;

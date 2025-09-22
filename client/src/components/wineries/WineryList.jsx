@@ -11,7 +11,7 @@ export default function WineryList() {
   useEffect(() => {
     async function fetchWineries() {
       try {
-        const response = await fetch("http://localhost:3000/wineries");
+        const response = await fetch("/wineries");
         const data = await response.json();
         setWineries(data);
         setFilteredWineries(data);

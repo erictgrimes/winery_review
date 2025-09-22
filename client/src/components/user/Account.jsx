@@ -19,7 +19,7 @@ export default function Account() {
       }
 
       try {
-        const response = await fetch("http://localhost:3000/users/me", {
+        const response = await fetch("/users/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -46,7 +46,7 @@ export default function Account() {
     if (!window.confirm("Are you sure you want to delete your account? This cannot be undone.")) return;
 
     try {
-      const response = await fetch("http://localhost:3000/users/me", {
+      const response = await fetch("/users/me", {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });

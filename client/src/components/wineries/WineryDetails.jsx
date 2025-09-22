@@ -35,7 +35,7 @@ export default function WineryDetails() {
 
   useEffect(() => {
     async function fetchReviews() {
-      const res = await fetch(`http://localhost:3000/wineries/${id}/reviews`);
+      const res = await fetch(`/wineries/${id}/reviews`);
       const data = await res.json();
       setReviews(data);
     }
@@ -45,7 +45,7 @@ export default function WineryDetails() {
   useEffect(() => {
     async function fetchWinery() {
       try {
-        const response = await fetch(`http://localhost:3000/wineries/${id}`);
+        const response = await fetch(`/wineries/${id}`);
         const data = await response.json();
         console.log("Winery data:", data);
         setWinery(data);
@@ -62,7 +62,7 @@ export default function WineryDetails() {
       if (!token) return;
 
       try {
-        const res = await fetch("http://localhost:3000/users/me", {
+        const res = await fetch("/users/me", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (!res.ok) return;
