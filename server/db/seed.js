@@ -2,7 +2,6 @@ import db from "#server/db/client";
 import { createUser } from "#server/db/queries/users";
 import { addWinery } from "#server/db/queries/wineries";
 import { addReview } from "#server/db/queries/reviews";
-import { faker } from "@faker-js/faker";
 
 await db.connect();
 await seed();
