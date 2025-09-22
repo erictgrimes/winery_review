@@ -29,7 +29,7 @@ export default function RandomWineryCard() {
   useEffect(() => {
     async function fetchRandomWineries() {
       try {
-        const response = await fetch("http://localhost:3000/wineries/random");
+        const response = await fetch("/wineries/random");
         const data = await response.json();
         setWineries(data);
       } catch (error) {
